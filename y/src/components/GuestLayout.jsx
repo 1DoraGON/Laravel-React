@@ -1,12 +1,18 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { useStateContext } from '../contexts/ContextProvider'
 import Signup from '../views/signup'
 
 export default function GuestLayout() {
+  const {token} = useStateContext()
+  //debugger;
+  if(token) {
+    return <Navigate to="/" />
+  }
   return (
     <div>
       <div>
-        <h1>Guest</h1>
+
         <Outlet />
 
       </div>
