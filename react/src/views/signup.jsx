@@ -5,6 +5,7 @@ import { useStateContext } from '../contexts/ContextProvider'
 
 export default function Signup() {
 
+  
   const nameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
