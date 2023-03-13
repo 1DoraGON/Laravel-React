@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
+    //public static $wrap = false;
+    // wrap false means no additionnal data (no data.data to get only the user)
     /**
      * Transform the resource into an array.
      *

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios-client'
 import { Link } from 'react-router-dom'
+import { useStateContext } from '../contexts/ContextProvider'
 export default function Users() {
   // Remove token from local storage
   //localStorage.removeItem('ACCESS_TOKEN');
   const [loading,setLoading] = useState(false)
   const [users,setUsers] = useState([])
-
+  const {setNotification} = useStateContext()
   const getUsers = ()=>{
     setLoading(true)
     axiosClient.get('users')
@@ -32,6 +33,7 @@ export default function Users() {
     axiosClient.delete(`/users/${user.id}`)
       .then(()=>{
         //TODO Show notif
+        setNotification("User was successfully deleted")
         getUsers()
       })
   }
@@ -61,7 +63,7 @@ export default function Users() {
         </tbody>
         <tbody>
             {users.map(u=>(
-              <tr>
+              <tr key={u.id}>
                 <td>{u.id}</td>
                 <td>{u.name}</td>
                 <td>{u.email}</td>
